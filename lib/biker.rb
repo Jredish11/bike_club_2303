@@ -21,5 +21,11 @@ class Biker
       rides[ride] << personal_record
     end
   end
+
+  def personal_record(ride)
+   rides[ride].min
+  end
+
+  
   
 end
