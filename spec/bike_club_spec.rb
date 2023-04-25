@@ -10,6 +10,39 @@ RSpec.describe BikeClub do
       expect(bike_club).to be_a(BikeClub)
       expect(bike_club.name).to eq("2 Wheel Mafia")
     end
+
+    it "has a list of bikers" do
+      bike_club = BikeClub.new("2 Wheel Mafia")
+      expect(bike_club.list).to eq([])
+    end
+
+    it "can add bikers to the list" do
+      bike_club = BikeClub.new("2 Wheel Mafia")
+      biker1 = Biker.new("Kenny", 30)
+      biker2 = Biker.new("Athena", 15)
+      bike_club.add_biker(biker1)
+      bike_club.add_biker(biker2)
+      expect(bike_club.list).to eq([biker1, biker2])
+    end
+
+    it "can tell us which Biker has logged the most rides" do
+      bike_club = BikeClub.new("2 Wheel Mafia")
+      biker1 = Biker.new("Kenny", 30)
+      biker2 = Biker.new("Athena", 15)
+      bike_club.add_biker(biker1)
+      bike_club.add_biker(biker2)
+      ride1 = Ride.new({name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills})
+      ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
+      biker1.learn_terrain!(:gravel)
+      biker1.learn_terrain!(:hills)
+      biker2.learn_terrain!(:gravel)
+      biker2.learn_terrain!(:hills)
+      biker1.log_ride(ride1, 92.5)
+      biker1.log_ride(ride2, 60.9)
+      biker2.log_ride(ride2, 61.6)
+
+      expect(bike_club.most_rides).to eq(biker1)
+    end
   end
 end
 
@@ -17,9 +50,7 @@ end
 
 
 
-# Each BikeClub has a name, as well as a way to read that data
 
-# Each BikeClub has a list of Bikers, and the BikeClub can add new Bikers.
 
 # Additionally, use TDD to add the following functionality to the BikeClub class. A passing challenge will complete at least one of the following. We recommend completing more than one if you have time.
 
