@@ -15,17 +15,23 @@ class Biker
   end
 
   def log_ride(ride, personal_record)
-    if rides[ride].nil?
+    if !acceptable_terrain.include?(ride.terrain) || ride.distance > @max_distance
+      nil
+    elsif rides[ride].nil?
       rides[ride] = [personal_record]
-    else
+    else 
       rides[ride] << personal_record
     end
   end
 
   def personal_record(ride)
-   rides[ride].min
+    if rides[ride] == nil
+      false
+    else
+      rides[ride].min
+    end
   end
 
-  
+
   
 end
