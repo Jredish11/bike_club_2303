@@ -31,7 +31,4 @@ class Biker
       rides[ride].min
     end
   end
-
-
-  
 end
