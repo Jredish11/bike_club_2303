@@ -40,7 +40,6 @@ RSpec.describe BikeClub do
       biker1.log_ride(ride1, 92.5)
       biker2.log_ride(ride2, 60.9)
       biker1.log_ride(ride2, 61.6)
-
       expect(bike_club.most_rides).to eq(biker1)
     end
 
@@ -84,7 +83,6 @@ RSpec.describe BikeClub do
       biker2.log_ride(ride2, 65.9)
       biker1.log_ride(ride3, 61.6)
       biker2.log_ride(ride3, 50.0)
-
       expect(bike_club.bikers_eligible(ride1)).to eq([biker1, biker2])
       expect(bike_club.bikers_eligible(ride2)).to eq([biker1, biker2])
       expect(bike_club.bikers_eligible(ride3)).to eq([biker2])
@@ -97,9 +95,3 @@ end
 
 
 
-
-# Additionally, use TDD to add the following functionality to the BikeClub class. A passing challenge will complete at least one of the following. We recommend completing more than one if you have time.
-
-
-
-# A BikeClub can tell us which Bikers are eligible for a given Ride. A Biker is eligible for a Ride if the terrain is acceptable to them and the total distance does not exceed their max distance.
