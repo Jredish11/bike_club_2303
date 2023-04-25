@@ -12,5 +12,9 @@ class BikeClub
   def most_rides
     list.max_by { |biker| biker.rides.count }
   end
+
+  def best_time(ride)
+    list.min_by { |biker| biker.personal_record(ride) }
+  end
   
 end
