@@ -28,6 +28,8 @@ RSpec.describe Biker do
       biker = Biker.new("Kenny", 30)
       ride1 = Ride.new({name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills})
       ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
+      biker.learn_terrain!(:gravel)
+      biker.learn_terrain!(:hills)
       biker.log_ride(ride1, 92.5)
       biker.log_ride(ride1, 91.1)
       biker.log_ride(ride2, 60.9)
@@ -42,6 +44,8 @@ RSpec.describe Biker do
       biker = Biker.new("Kenny", 30)
       ride1 = Ride.new({name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills})
       ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
+      biker.learn_terrain!(:gravel)
+      biker.learn_terrain!(:hills)
       biker.log_ride(ride1, 92.5)
       biker.log_ride(ride1, 91.1)
       biker.log_ride(ride2, 60.9)
@@ -52,6 +56,8 @@ RSpec.describe Biker do
 
     it "checks another biker's rides personal record" do
       biker2 = Biker.new("Athena", 15)
+      ride1 = Ride.new({name: "Walnut Creek Trail", distance: 31.0, loop: false, terrain: :hills})
+      ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
       biker2.log_ride(ride1, 97.0)
       biker2.log_ride(ride2, 67.0)
       expect(biker2.rides).to eq({})
@@ -59,8 +65,9 @@ RSpec.describe Biker do
       biker2.learn_terrain!(:hills)
       biker2.log_ride(ride1, 95.0)
       biker2.log_ride(ride2, 65.0)
-      biker2.rides({})
-
+      expect(biker2.rides).to eq({ride2 => [65.0]})
+      expect(biker2.personal_record(ride2)).to eq(65.0)
+      expect(biker2.personal_record(ride1)).to eq(false)
     end
   end
 end
