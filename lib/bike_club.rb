@@ -18,12 +18,8 @@ class BikeClub
   end
 
   def bikers_eligible(ride)
-    # A Biker is eligible for a Ride if the terrain is acceptable to them and the total distance does not exceed their max distance.
-    list.each do |biker|
-     biker.rides.map do |rides, record| 
-      biker.log_ride(ride, record)
-     end
+    list.select do |biker| 
+      biker.acceptable_terrain.include?(ride.terrain) && ride.distance <= biker.max_distance
     end
   end
-  
 end
