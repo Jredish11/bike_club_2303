@@ -22,5 +22,4 @@ class Ride
       distance
     end
   end
-
 end
