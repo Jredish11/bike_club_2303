@@ -15,6 +15,12 @@ RSpec.describe Ride do
       ride1 = Ride.new({name: "Walnut Creek Trail", distance: 10.7, loop: false, terrain: :hills})
       expect(ride1.total_distance).to eq(21.4)
     end
+
+    it "checks if another ride is a loop" do
+      ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
+      expect(ride2.loop?).to eq(true)
+      expect(ride2.total_distance).to eq(14.9)
+    end 
   end
 end
 
@@ -22,22 +28,3 @@ end
 
 
 
-
-
-
-
-
-# > ride1.loop?
-# # => false
-
-# > ride1.total_distance
-# # => 21.4
-
-# > ride2 = Ride.new({name: "Town Lake", distance: 14.9, loop: true, terrain: :gravel})
-# # => #<Ride:0x00007f845c228b38...>
-
-# > ride2.loop?
-# # => true
-
-# > ride2.total_distance
-# # => 14.9
